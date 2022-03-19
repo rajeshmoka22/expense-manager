@@ -1,12 +1,25 @@
-import { action, computed, observable } from "mobx";
+import { action, computed, observable, extendObservable, autorun, toJS } from "mobx";
 import { ExpenseItem } from "../model/Interfaces";
 import { categories } from "../utils/constants";
 import moment from "moment";
+// import {autoSave} from "../utils/reusables";
 
 class ExpenseStore {
   @observable expenses: Array<ExpenseItem> = [];
   @observable username: string = '';
   @observable currency: string = '';
+
+  constructor() {
+    this.load();
+    setTimeout(this.setupObservers.bind(this), 500);
+  }
+
+  setupObservers() {
+    autorun(() => {
+      const json = JSON.stringify(toJS(this));
+      this.save(json);
+    });
+  }
 
   @action
   addExpense(expense: ExpenseItem) {
@@ -60,6 +73,18 @@ class ExpenseStore {
   @action
   updateCurrency = (value: string) => {
     this.currency = value;
+  }
+
+  load() {
+    const store = localStorage.getItem('expenseStore');
+    if (store) {
+      const data = JSON.parse(store);
+      extendObservable(this, data);
+    }
+  }
+
+  save(json: string) {
+    localStorage.setItem('expenseStore', json);
   }
 
 }

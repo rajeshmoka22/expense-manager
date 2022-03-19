@@ -14,5 +14,8 @@
   "EnterName": "Enter your name",
   "ChooseCurrency": "Choose currency",
   "History": "History",
-  "NoItems": "No items"
+  "NoItems": "No items",
+  "Statistics": "Stats",
+  "Profile": "Profile",
+  "ComingSoon": "Coming Soon"
 }
