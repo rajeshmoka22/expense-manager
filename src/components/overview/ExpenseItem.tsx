@@ -11,7 +11,7 @@ export default function ExpenseItem(props: IExpenseProps):JSX.Element {
         <span className="expense-icon">{categoryIcons[category.toLowerCase()]}</span>
         <span>{category}</span>
       </div>
-      <div className="text-break">{amount}<span className="px-1 currency-item">{currency}</span></div>
+      <div className="text-break text-orange">{amount}<span className="px-1 currency-item">{currency}</span></div>
     </div>
   )
 }

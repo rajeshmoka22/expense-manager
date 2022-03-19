@@ -52,7 +52,7 @@ export const paths:IPaths = {
 }
 
 export const categoryIcons: ICategoryIcons = {
-  food: '🥘',
+  food: '🥗',
   transportation: '🚗',
   shopping: '👜',
   vacation: '🏖',

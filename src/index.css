@@ -46,3 +46,7 @@ select {
 select option {
   font-size: 1rem;
 }
+
+.text-orange {
+  color: #ef7329;
+}

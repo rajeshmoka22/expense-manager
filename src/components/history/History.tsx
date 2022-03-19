@@ -4,6 +4,8 @@ import labels from '../../utils/labels.json';
 import {months} from '../../utils/constants';
 import './history.css';
 import {capitalize} from '../../utils/reusables';
+import { useMemo } from 'react';
+import { toJS } from 'mobx';
 
 interface IProps {
   expenseStore: {
@@ -20,11 +22,15 @@ export default function History(props: IProps) {
     }
   } = props;
 
+  const memoizedArray = useMemo(() => toJS(expenseList).reverse(), [expenseList]);
   const getExpenseCard = (expense:ExpenseItem) => {
     const {date, name, category, amount, mode} = expense;
     let convertedDate = new Date(expense.date);
     return (
-      <div className="d-flex border-left-success py-3 m-2 bg-light shadow-sm border-top">
+      <div
+        className="d-flex border-left-success py-3 m-2 bg-light shadow-sm border-top"
+        key={`${convertedDate}-${name}`}
+      >
         <div className="w-25 pr-1 d-flex flex-column justify-content-center align-items-center">
           <div className="expense-date text-success">
             <strong>{convertedDate.getDate()}</strong>
@@ -40,7 +46,7 @@ export default function History(props: IProps) {
           <div className="text-secondary">{category}</div>
           <div className="text-secondary">{mode}</div>
         </div>
-        <div className="w-25 px-1 text-danger"><strong className="expense-amount text-break">{amount}<span className="px-1 currency-item">{currency}</span></strong></div>
+        <div className="w-25 px-1 text-orange"><strong className="expense-amount text-break">{amount}<span className="px-1 currency-item">{currency}</span></strong></div>
       </div>
     )
   }
@@ -48,9 +54,9 @@ export default function History(props: IProps) {
     <div className="p-3">
       <div className="page-heading mb-2">{labels.History}</div>
       {
-        expenseList.length ? 
-        expenseList.map(expense => getExpenseCard(expense))
-        : (<strong className="py-3 text-secondary d-flex justify-content-center">{labels.NoItems}</strong>)
+        memoizedArray.length ? 
+        memoizedArray.map(expense => getExpenseCard(expense))
+        : (<strong className="py-3 text-secondary d-flex justify-content-center text-orange">{labels.NoItems}</strong>)
       }
     </div>
   )

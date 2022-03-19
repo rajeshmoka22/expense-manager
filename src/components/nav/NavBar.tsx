@@ -20,7 +20,6 @@ const NavigationAction = styled(BottomNavigationAction)(`
 `);
 
 function LabelBottomNavigation({expenseStore:{username}}: {expenseStore: {username: string}}) {
-  console.log(username);
   const [value, setValue] = React.useState(LABELS.overview);
   const navigate = useNavigate();
   const {pathname} = window.location;
