@@ -1,0 +1,18 @@
+{
+  "Home": "Home",
+  "ThisMonthSpend": "This month spend",
+  "Expenses": "Expenses",
+  "AddExpense": "Add Expense",
+  "EnterExpenseName": "Enter expense name",
+  "Name":"Name",
+  "Category": "Category",
+  "Amount": "Amount",
+  "EnterAmount": "Enter amount",
+  "ModeOfPayment": "Mode Of Payment",
+  "ModeLabel": "mode",
+  "BeforeStart": "Before we start",
+  "EnterName": "Enter your name",
+  "ChooseCurrency": "Choose currency",
+  "History": "History",
+  "NoItems": "No items"
+}
