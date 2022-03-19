@@ -12,12 +12,12 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.4.1",
     "@types/node": "^16.11.26",
-    "@types/react": "^17.0.40",
-    "@types/react-dom": "^17.0.13",
+    "@types/react": "^17.0.41",
+    "@types/react-dom": "^17.0.14",
     "@types/react-router": "^5.1.18",
     "@types/react-router-dom": "^5.3.3",
     "currencies.json": "^1.0.2",
-    "mobx": "^6.4.2",
+    "mobx": "^6.5.0",
     "mobx-react": "^7.3.0",
     "moment": "^2.29.1",
     "react": "^17.0.2",
@@ -54,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "mini-css-extract-plugin": "2.4.5",
     "moment": "^2.29.1",
     "react-moment": "^1.1.1"
   }
