@@ -3,7 +3,7 @@ import './home.css';
 import ExpenseItem from './ExpenseItem';
 import { IHomeProps } from '../../model/Interfaces';
 import { observer } from 'mobx-react-lite';
-import { categoryArray, paths } from '../../utils/constants';
+import { categoryArray } from '../../utils/constants';
 import labels from '../../utils/labels.json';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
