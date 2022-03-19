@@ -3,7 +3,7 @@ import labels from '../../utils/labels.json';
 
 export default function Stats() {
   return (
-    <div>
+    <div className="p-3">
       <div className="page-heading">{labels.Statistics}</div>
       <h2 className="m-5 text-muted">{labels.ComingSoon}</h2>
     </div>

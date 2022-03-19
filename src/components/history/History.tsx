@@ -23,9 +23,8 @@ export default function History(props: IProps) {
   const getExpenseCard = (expense:ExpenseItem) => {
     const {date, name, category, amount, mode} = expense;
     let convertedDate = new Date(expense.date);
-    console.log(date);
     return (
-      <div className="d-flex border-left-success px-1 py-3 m-2 bg-light shadow-sm border-top">
+      <div className="d-flex border-left-success py-3 m-2 bg-light shadow-sm border-top">
         <div className="w-25 pr-1 d-flex flex-column justify-content-center align-items-center">
           <div className="expense-date text-success">
             <strong>{convertedDate.getDate()}</strong>
@@ -46,7 +45,7 @@ export default function History(props: IProps) {
     )
   }
   return (
-    <div>
+    <div className="p-3">
       <div className="page-heading mb-2">{labels.History}</div>
       {
         expenseList.length ? 

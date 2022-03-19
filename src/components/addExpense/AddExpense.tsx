@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
 import moment from 'moment';
 import { ExpenseItem } from '../../model/Interfaces';
 import { categories, categoryArray, ModeOfPayment, PaymentModes } from '../../utils/constants';
@@ -24,8 +23,7 @@ export default function AddExpense(props: IExpenseProps) {
 
   const paymentOptions = PaymentModes.map(mode => ({option: mode, value: mode}));
   const categoryOptions = categoryArray.map(category => ({option: category, value: category}));
-
-  const navigate = useNavigate();
+  const [showSuccess, setShowSuccess] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     mode: ModeOfPayment.CARD,
@@ -35,6 +33,7 @@ export default function AddExpense(props: IExpenseProps) {
   const [error, setError] = useState('');
 
   const setFormDetails = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setShowSuccess(false);
     const {name, value} = event.target;
     if(name==='name') {
       if (value.length>50) setError('Name should be less than 50 characters');
@@ -58,7 +57,14 @@ export default function AddExpense(props: IExpenseProps) {
     const expense = {...formData, date: ''};
     expense.date = moment().format('YYYY-MM-DDTHH:MM');
     addExpenseItem(expense);
-    navigate('/');
+    setShowSuccess(true);
+    setFormData({
+      name: '',
+      mode: ModeOfPayment.CARD,
+      amount: 0,
+      category: categories.FOOD
+    })
+    // navigate('/');
   }
 
   const isSubmitEnabled = () => {
@@ -66,8 +72,9 @@ export default function AddExpense(props: IExpenseProps) {
   }
 
   return (
-    <div className="m-4">
-        <h1 className="mt-5">{labels.AddExpense}</h1>
+    <div className="p-3">
+        <div className="page-heading">{labels.AddExpense}</div>
+        {showSuccess ? <div className="text-success my-2 p-2 border border-success text-center"><strong>{labels.AddSuccess}</strong></div> : ''}
         <form>
           {error ? <div className="text-danger">{error}</div> : ''}
           <div className="shadow-lg p-3 my-4 bg-white">
