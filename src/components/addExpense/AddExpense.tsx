@@ -70,16 +70,7 @@ export default function AddExpense(props: IExpenseProps) {
         <h1 className="mt-5">{labels.AddExpense}</h1>
         <form>
           {error ? <div className="text-danger">{error}</div> : ''}
-          <div className="shadow-lg p-3 my-5 bg-white">
-            <Input
-              type="number"
-              value={Number(formData.amount.toString())}
-              name='amount'
-              onChange={setFormDetails}
-              placeholder={labels.EnterAmount}
-              autocomplete='off'
-              label={labels.Amount.toLocaleUpperCase()}
-            />
+          <div className="shadow-lg p-3 my-4 bg-white">
             <Input
               type="text"
               value={formData.name}
@@ -88,6 +79,15 @@ export default function AddExpense(props: IExpenseProps) {
               placeholder={labels.EnterExpenseName}
               autocomplete='off'
               label={labels.Name.toLocaleUpperCase()}
+            />
+            <Input
+              type="number"
+              value={Number(formData.amount.toString())}
+              name='amount'
+              onChange={setFormDetails}
+              placeholder={labels.EnterAmount}
+              autocomplete='off'
+              label={labels.Amount.toLocaleUpperCase()}
             />
             <SelectComponent
               options={categoryOptions}

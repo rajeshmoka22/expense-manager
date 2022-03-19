@@ -6,11 +6,6 @@ import Routing from './routes/routes';
 import expenseStore from './store/expenseStore';
 
 function App() {
-  // const {username} = expenseStore;
-  // const [showBottomNav, setShowBottomNav] = useState(false);
-  // useEffect(() => {
-  //   if(username) setShowBottomNav(true);
-  // },[username])
 
   return (
     <Router>
