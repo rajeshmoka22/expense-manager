@@ -51,7 +51,7 @@ export default function History(props: IProps) {
     )
   }
   return (
-    <div className="p-3">
+    <div className="p-3 mb-5">
       <div className="page-heading mb-2">{labels.History}</div>
       {
         memoizedArray.length ? 
