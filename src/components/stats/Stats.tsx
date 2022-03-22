@@ -1,11 +1,78 @@
 import * as React from 'react';
+import { useEffect, useCallback } from 'react';
+import { PieChart } from 'react-minimal-pie-chart';
 import labels from '../../utils/labels.json';
+import { categories, categoryArray, categoryColors } from '../../utils/constants';
+import {calculatePercentage} from '../../utils/reusables';
+import PercentageItem from './PercentageItem';
+import { ExpenseItem } from '../../model/Interfaces';
+import { useState } from 'react';
 
-export default function Stats() {
+interface IProps {
+  expenseStore: {
+    getMontlyPriceByCategory: (category: categories | string) => number,
+    expenseList: Array<ExpenseItem>
+  }
+}
+
+export default function Stats(props: IProps) {
+  const {
+    expenseStore: {
+      getMontlyPriceByCategory,
+      expenseList
+    }
+  } = props;
+  const [pieData, setPieData] = useState<Array<{title:string, color:string, value: number}>>([]);
+  const totalPrice = getMontlyPriceByCategory('all');
+  const getPercentage = useCallback((value: number) => {
+    return calculatePercentage(value, totalPrice).toFixed(1);
+  }, [totalPrice])
+  useEffect(() => {
+    const data: Array<{title:string, color:string, value: number}> = [];
+    categoryArray.forEach(category => {
+      const percentage = Number(getPercentage(getMontlyPriceByCategory(category)));
+      if(percentage > 0) {
+        data.push({ title: category,
+          value: percentage,
+          color: categoryColors[category.toLowerCase()]
+        })
+      }
+    })
+
+    setPieData([...data]);
+  },[getMontlyPriceByCategory, getPercentage]);
+
   return (
     <div className="p-3">
       <div className="page-heading">{labels.Statistics}</div>
-      <h2 className="m-5 text-muted">{labels.ComingSoon}</h2>
+      {
+        expenseList?.length ?
+        <>
+          <div className="my-3 px-1">
+            <PieChart
+              style={{ height: '150px' }}
+              data={pieData}
+              labelPosition={112}
+              label={({ dataEntry }) => dataEntry.title}
+              labelStyle={(index) => ({
+                fill: '#000',
+                fontSize: '.5rem',
+                fontFamily: 'sans-serif',
+              })}
+            />
+          </div>
+          <div className="">
+              {categoryArray.map(category => (
+                <PercentageItem
+                  category={category}
+                  percentage={getPercentage(getMontlyPriceByCategory(category))}
+                  key={category}
+                />
+              ))}
+            </div>
+        </> : <div className="my-3 px-2 text-muted">{labels.AddItemsMessage}</div>
+      }
+      
     </div>
   )
 }

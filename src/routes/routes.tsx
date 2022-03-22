@@ -18,14 +18,16 @@ const WelcomeComponent = (
     updateUserName={expenseStore.updateUserName}
     updateCurrency={expenseStore.updateCurrency}
   />);
+const StatsComponent = <Stats expenseStore={expenseStore} />
+const ProfileComponent = <Profile expenseStore={expenseStore} />
 export default function Routing() {
   return (
     <>
       <Routes>
         <Route path={paths.Home} element={HomeComponent} />
         <Route path={paths.Add} element={AddExpenseComponent} />
-        <Route path={paths.Profile} element={<Profile />} />
-        <Route path={paths.Statistics} element={<Stats />} />
+        <Route path={paths.Profile} element={ProfileComponent} />
+        <Route path={paths.Statistics} element={StatsComponent} />
         <Route path={paths.History} element={HistoryComponent} />
         {!expenseStore.username ? <Route path={paths.Welcome} element={WelcomeComponent} /> : ''}
         <Route path='/' element={HomeComponent} />

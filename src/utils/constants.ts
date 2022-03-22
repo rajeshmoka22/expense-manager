@@ -61,4 +61,14 @@ export const categoryIcons: ICategoryIcons = {
   entertainment: '🎬'
 }
 
+export const categoryColors: Record<string, string> = {
+  food: '#FFF1C9',
+  transportation: '#F7B7A3',
+  shopping: '#EA5F89',
+  vacation: '#9B3192',
+  education: '#57167E',
+  others: '#7f7f7f',
+  entertainment: '#2B0B3F'
+}
+
 export const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];

@@ -50,3 +50,7 @@ select option {
 .text-orange {
   color: #ef7329;
 }
+
+.font-weight-bold {
+  font-weight: bold;
+}

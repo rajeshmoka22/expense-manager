@@ -19,7 +19,7 @@ const NavigationAction = styled(BottomNavigationAction)(`
   }
 `);
 
-function LabelBottomNavigation({expenseStore:{username}}: {expenseStore: {username: string}}) {
+function LabelBottomNavigation({expenseStore:{username, currency}}: {expenseStore: {username: string, currency:string}}) {
   const [value, setValue] = React.useState(LABELS.overview);
   const navigate = useNavigate();
   const {pathname} = window.location;
@@ -37,7 +37,7 @@ function LabelBottomNavigation({expenseStore:{username}}: {expenseStore: {userna
   }, [pathname, navigate]);
 
   return (
-    username ?
+    username && currency ?
     <BottomNavigation 
       sx={{
         boxShadow: '0 0 10px grey',

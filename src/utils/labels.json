@@ -18,5 +18,7 @@
   "Statistics": "Stats",
   "Profile": "Profile",
   "ComingSoon": "Coming Soon",
-  "AddSuccess": "Added Successfully"
+  "AddSuccess": "Added Successfully",
+  "AddItemsMessage": "Add some expenses to see statistics.",
+  "Currency": "Currency"
 }
