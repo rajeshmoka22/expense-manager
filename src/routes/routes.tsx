@@ -1,38 +1,28 @@
 import * as React from 'react'; 
 import { Route, Routes } from 'react-router-dom';
-import AddExpense from "../components/addExpense/AddExpense";
-import Home from "../components/overview/Home";
-import Profile from "../components/profile/Profile";
-import Stats from "../components/stats/Stats";
-import History from "../components/history/History";
+import { hasUserName } from '../utils/reusables';
 import { paths } from "../utils/constants";
-import expenseStore from '../store/expenseStore';
-import Welcome from '../components/welcome/Welcome';
-import Nav from '../components/nav/NavBar';
+import AddExpenseRoot from "../components/addExpense/index";
+import HomeComponent from '../components/overview/index';
+import ProfileComponentRoot from "../components/profile/index";
+import StatsComponentRoot from "../components/stats/index";
+import HistoryComponentRoot from "../components/history/index";
+import WelcomeRoot from '../components/welcome/index';
+import NavRoot from '../components/nav/index';
 
-const HomeComponent = <Home expenseStore={expenseStore}/>;
-const AddExpenseComponent = <AddExpense expenseStore={expenseStore} />
-const HistoryComponent = <History expenseStore={expenseStore} />
-const WelcomeComponent = (
-  <Welcome
-    updateUserName={expenseStore.updateUserName}
-    updateCurrency={expenseStore.updateCurrency}
-  />);
-const StatsComponent = <Stats expenseStore={expenseStore} />
-const ProfileComponent = <Profile expenseStore={expenseStore} />
 export default function Routing() {
   return (
     <>
       <Routes>
-        <Route path={paths.Home} element={HomeComponent} />
-        <Route path={paths.Add} element={AddExpenseComponent} />
-        <Route path={paths.Profile} element={ProfileComponent} />
-        <Route path={paths.Statistics} element={StatsComponent} />
-        <Route path={paths.History} element={HistoryComponent} />
-        {!expenseStore.username ? <Route path={paths.Welcome} element={WelcomeComponent} /> : ''}
-        <Route path='/' element={HomeComponent} />
+        <Route path={paths.Home} element={<HomeComponent />} />
+        <Route path={paths.Add} element={<AddExpenseRoot />} />
+        <Route path={paths.Profile} element={<ProfileComponentRoot />} />
+        <Route path={paths.Statistics} element={<StatsComponentRoot />} />
+        <Route path={paths.History} element={<HistoryComponentRoot />} />
+        <Route path='/' element={<HomeComponent />} />
+        {!hasUserName() ? <Route path={paths.Welcome} element={<WelcomeRoot />} /> : null}
       </Routes>
-      <Nav expenseStore={expenseStore} />
+      <NavRoot />
     </>
   )
 }

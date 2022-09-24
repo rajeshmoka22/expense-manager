@@ -1,13 +1,15 @@
-import { action, computed, observable, extendObservable, autorun, toJS } from "mobx";
+import { action, computed, observable, extendObservable, autorun, toJS, reaction, runInAction } from "mobx";
 import { ExpenseItem } from "../model/Interfaces";
 import { categories } from "../utils/constants";
 import moment from "moment";
-// import {autoSave} from "../utils/reusables";
 
 class ExpenseStore {
   @observable expenses: Array<ExpenseItem> = [];
   @observable username: string = '';
   @observable currency: string = '';
+  @observable filteredItems: Array<ExpenseItem> = [];
+  @observable selectedCategory: string = categories.ALL;
+  @observable isFilterActive = false;
 
   constructor() {
     this.load();
@@ -19,6 +21,17 @@ class ExpenseStore {
       const json = JSON.stringify(toJS(this));
       this.save(json);
     });
+    reaction(
+      () => this.selectedCategory,
+      () => {
+        runInAction(() => {
+          if(this.selectedCategory.toLocaleUpperCase() !== categories.ALL.toLocaleUpperCase()){
+            this.isFilterActive = true;
+            this.filterItems();
+          } else this.isFilterActive = false;
+        })
+      }
+    )
   }
 
   @action
@@ -59,6 +72,21 @@ class ExpenseStore {
     }
     return totalPrice;
   }
+
+  @action
+  filterItems = () => {
+    const expenses = [...this.expenseList];
+    if(this.isFilterActive) {
+      this.filteredItems = expenses.filter((expense) => {
+        if(this.selectedCategory !== categories.ALL && expense.category.toLocaleUpperCase() === this.selectedCategory) return true;
+        return false;
+      })
+    }
+  }
+
+  updateCategory = action((category: string) => {
+    this.selectedCategory = category;
+  })
 
   @action
   addExpenseItem = (expense: ExpenseItem) => {

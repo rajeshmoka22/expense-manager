@@ -5,10 +5,12 @@ export const LABELS = {
   statistics: "Statistics",
   history: "History",
   addNew: "Add",
-  profile: "Profile"
+  profile: "Profile",
+  category: "Category"
 }
 
 export enum categories {
+  ALL = 'all',
   FOOD = 'Food',
   TRANSPORTATION = 'Transportation',
   SHOPPING = 'Shopping',
@@ -49,6 +51,15 @@ export const paths:IPaths = {
   'Add': "/addExpense",
   'Profile': "/profile",
   'Welcome': "/welcome"
+}
+
+export const pathKeys:IPaths = {
+  "/": 'Home',
+  "/stats": 'Statistics',
+  "/history": 'History',
+  "/addExpense": 'Add',
+  "/profile": 'Profile',
+  "/welcome": 'Welcome'
 }
 
 export const categoryIcons: ICategoryIcons = {

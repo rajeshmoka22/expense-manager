@@ -1,4 +1,5 @@
 import { autorun, toJS } from "mobx";
+import expenseStore from "../store/expenseStore";
 
 export const capitalize = (str: string = ''): string => {
   return str.length ? `${str[0].toLocaleUpperCase()}${str.slice(1)}` : '';
@@ -19,4 +20,8 @@ export function autoSave(store: any, save: (props:string) => any) {
 
 export function calculatePercentage(value1: number, value2: number): number {
   return (value1/value2)*100;
+}
+
+export function hasUserName() {
+  return !!expenseStore.username;
 }

@@ -31,7 +31,7 @@ code {
   width: 95%;
   font-size:1.25rem;
   font-weight: bold;
-  transition: all ease-in-out .2s;
+  transition: all ease-in-out .1s;
 }
 
 .input:focus {

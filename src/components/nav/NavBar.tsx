@@ -7,7 +7,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import PersonIcon from '@mui/icons-material/Person';
-import { LABELS, paths } from '../../utils/constants';
+import { LABELS, pathKeys, paths } from '../../utils/constants';
 import { useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { styled } from "@mui/material/styles";
@@ -20,21 +20,19 @@ const NavigationAction = styled(BottomNavigationAction)(`
 `);
 
 function LabelBottomNavigation({expenseStore:{username, currency}}: {expenseStore: {username: string, currency:string}}) {
-  const [value, setValue] = React.useState(LABELS.overview);
   const navigate = useNavigate();
-  const {pathname} = window.location;
+  const [value, setValue] = React.useState(LABELS.overview);
+  const {pathname} = window?.location;
+
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
+    navigate(paths[newValue]);
   };
 
   useEffect(() => {
-    navigate(paths[value]);
-  }, [value, navigate]);
-
-  useEffect(() => {
-    navigate(pathname);
-  }, [pathname, navigate]);
+    if(pathname) setValue(pathKeys[pathname] || LABELS.overview);
+  }, [pathname]);
 
   return (
     username && currency ?

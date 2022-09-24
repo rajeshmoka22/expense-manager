@@ -68,7 +68,8 @@
 }
 
 .container {
-  height: calc(100%-70px);
+  max-height: calc(100% - 70px);
+  overflow-x:scroll;
 }
 
 button.Mui-selected {

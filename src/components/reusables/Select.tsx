@@ -41,7 +41,7 @@ export default function SelectComponent(props:IProps) {
           value={value}
           onChange={onChange}
           name={name}
-          className={`form-select p-3 bg-light my-3 border-0 rounded-0 ${classes || ''}`}
+          className={`form-select bg-light border-0 rounded-0 ${classes || ''}`}
         >
           {getOptions()}
         </select>

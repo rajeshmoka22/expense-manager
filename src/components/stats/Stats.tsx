@@ -43,22 +43,22 @@ export default function Stats(props: IProps) {
   },[getMontlyPriceByCategory, getPercentage]);
 
   return (
-    <div className="p-3">
+    <div className="p-3 container">
       <div className="page-heading">{labels.Statistics}</div>
       {
         expenseList?.length ?
         <>
           <div className="my-3 px-1">
             <PieChart
-              style={{ height: '150px' }}
+              style={{ height: '150px', margin: '1rem' }}
               data={pieData}
-              labelPosition={112}
-              label={({ dataEntry }) => dataEntry.title}
               labelStyle={(index) => ({
                 fill: '#000',
                 fontSize: '.5rem',
                 fontFamily: 'sans-serif',
               })}
+              lengthAngle={-360}
+              animate
             />
           </div>
           <div className="">

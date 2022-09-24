@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { useState } from 'react';
 import moment from 'moment';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { ExpenseItem } from '../../model/Interfaces';
 import { categories, categoryArray, ModeOfPayment, PaymentModes } from '../../utils/constants';
 import labels from '../../utils/labels.json';
 import Input from '../reusables/Input';
 import SelectComponent from '../reusables/Select';
+import { useEffect } from 'react';
 
 interface IExpenseProps {
   isEditing?: boolean,
@@ -67,14 +69,29 @@ export default function AddExpense(props: IExpenseProps) {
     // navigate('/');
   }
 
+  useEffect(() => {
+    if(showSuccess) window.scrollTo({top:10, behavior: 'smooth'});
+  }, [showSuccess])
+
   const isSubmitEnabled = () => {
     return formData.name && formData.mode && formData.amount && formData.category;
   }
 
+  const SuccessMessage = () => {
+    return (
+      <div className="text-success my-2 p-2 text-center">
+        <div className="m-2 p-1">
+          <CheckCircleOutlineIcon fontSize="large"/>
+        </div>
+        <strong>{labels.AddSuccess}</strong>
+      </div>
+    )
+  }
+
   return (
-    <div className="p-3">
+    <div className="p-3 container mb-5">
         <div className="page-heading">{labels.AddExpense}</div>
-        {showSuccess ? <div className="text-success my-2 p-2 border border-success text-center"><strong>{labels.AddSuccess}</strong></div> : ''}
+        {showSuccess ? <SuccessMessage />: ''}
         <form>
           {error ? <div className="text-danger">{error}</div> : ''}
           <div className="shadow-lg p-3 my-4 bg-white">
@@ -102,6 +119,7 @@ export default function AddExpense(props: IExpenseProps) {
               onChange={setFormDetails}
               name={labels.Category.toLowerCase()}
               value={formData.category}
+              classes={"p-3 my-3"}
             />
             <SelectComponent
               options={paymentOptions}
@@ -109,6 +127,7 @@ export default function AddExpense(props: IExpenseProps) {
               onChange={setFormDetails}
               name={labels.ModeLabel.toLocaleLowerCase()}
               value={formData.mode}
+              classes={"p-3 my-3"}
             />
           </div>
           <button
