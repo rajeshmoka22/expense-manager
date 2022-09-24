@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { useEffect } from 'react';
 import { ExpenseItem } from '../../model/Interfaces';
 import labels from '../../utils/labels.json';
-import {categories, LABELS, months} from '../../utils/constants';
+import {categories, months} from '../../utils/constants';
 import './history.css';
 import {capitalize} from '../../utils/reusables';
 import { useMemo } from 'react';
