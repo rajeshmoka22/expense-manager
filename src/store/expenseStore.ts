@@ -206,4 +206,5 @@ class ExpenseStore {
 
 }
 
-export default new ExpenseStore();
+const expenseStore = new ExpenseStore();
+export default expenseStore;

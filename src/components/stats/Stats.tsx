@@ -6,7 +6,7 @@ import { categories, categoryArray, categoryColors } from '../../utils/constants
 import {calculatePercentage} from '../../utils/reusables';
 import PercentageItem from './PercentageItem';
 import { ExpenseItem } from '../../model/Interfaces';
-import { useState } from 'react';
+// import { useState } from 'react';
 
 interface IProps {
   expenseStore: {
@@ -24,7 +24,8 @@ export default function Stats(props: IProps) {
       currency
     }
   } = props;
-  const [pieData, setPieData] = useState<Array<{title:string, color:string, value: number}>>([]);
+  // const [pieData, setPieData] = useState<Array<{title:string, color:string, value: number}>>([]);
+
   const totalPrice = getMontlyPriceByCategory('all');
   const getPercentage = useCallback((value: number) => {
     return calculatePercentage(value, totalPrice).toFixed(1);
@@ -41,7 +42,7 @@ export default function Stats(props: IProps) {
       }
     })
 
-    setPieData([...data]);
+    // setPieData([...data]);
   },[getMontlyPriceByCategory, getPercentage]);
 
   return (
