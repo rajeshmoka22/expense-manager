@@ -36,7 +36,8 @@ function LabelBottomNavigation({expenseStore:{username, currency}}: {expenseStor
 
   return (
     username && currency ?
-    <BottomNavigation 
+    <BottomNavigation
+      className="p-2"
       sx={{
         boxShadow: '0 0 10px grey',
         position: 'fixed',

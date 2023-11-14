@@ -22,6 +22,6 @@ export function calculatePercentage(value1: number, value2: number): number {
   return (value1/value2)*100;
 }
 
-export function hasUserName() {
-  return !!expenseStore.username;
+export function showWelcomePage() {
+  return !!expenseStore.username || !!expenseStore.currency || expenseStore.budget <= 0;
 }

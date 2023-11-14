@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useEffect, useCallback } from 'react';
-import { PieChart } from 'react-minimal-pie-chart';
-import labels from '../../utils/labels.json';
+// import { PieChart } from 'react-minimal-pie-chart';
+import labels from '../../utils/labels';
 import { categories, categoryArray, categoryColors } from '../../utils/constants';
 import {calculatePercentage} from '../../utils/reusables';
 import PercentageItem from './PercentageItem';
@@ -11,7 +11,8 @@ import { useState } from 'react';
 interface IProps {
   expenseStore: {
     getMontlyPriceByCategory: (category: categories | string) => number,
-    expenseList: Array<ExpenseItem>
+    expenseList: Array<ExpenseItem>,
+    currency: string
   }
 }
 
@@ -19,7 +20,8 @@ export default function Stats(props: IProps) {
   const {
     expenseStore: {
       getMontlyPriceByCategory,
-      expenseList
+      expenseList,
+      currency
     }
   } = props;
   const [pieData, setPieData] = useState<Array<{title:string, color:string, value: number}>>([]);
@@ -49,7 +51,7 @@ export default function Stats(props: IProps) {
         expenseList?.length ?
         <>
           <div className="my-3 px-1">
-            <PieChart
+            {/* <PieChart
               style={{ height: '150px', margin: '1rem' }}
               data={pieData}
               labelStyle={(index) => ({
@@ -59,14 +61,15 @@ export default function Stats(props: IProps) {
               })}
               lengthAngle={-360}
               animate
-            />
+            /> */}
           </div>
           <div className="">
               {categoryArray.map(category => (
                 <PercentageItem
                   category={category}
-                  percentage={getPercentage(getMontlyPriceByCategory(category))}
+                  amount={getMontlyPriceByCategory(category)}
                   key={category}
+                  currency={currency}
                 />
               ))}
             </div>

@@ -7,6 +7,7 @@ export default function WelcomeRoot() {
     <Welcome
       updateUserName={expenseStore.updateUserName}
       updateCurrency={expenseStore.updateCurrency}
+      updateBudget={expenseStore.updateBudget}
     />
   );
 }

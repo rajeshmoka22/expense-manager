@@ -21,46 +21,17 @@
   margin: auto;
 }
 
-.margin-tb-1{
-  margin-top:1rem;
-  margin-bottom: 1rem;
-}
-
-.margin-lr-1 {
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
-
-.padding-tb-1{
-  padding-top:1rem;
-  padding-bottom: 1rem;
-}
-
-.padding-lr-1 {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.align-center {
-  text-align: center;
-}
-
 .font-bold {
   font-weight: bold;
 }
 
-.d-flex {
-  display: flex;
-}
 
 .page-heading{
   margin-top: .5rem;
-  margin-left: .5rem;
   position: sticky;
   top: 0;
-  font-size: 2.25rem;
+  font-size: 2rem;
   font-weight: 700;
-  background: #f6f6f6;
 }
 
 .color-gray {

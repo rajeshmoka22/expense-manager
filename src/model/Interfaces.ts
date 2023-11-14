@@ -18,10 +18,12 @@ export interface ICategoryIcons {
 export interface IExpenseProps {
   category: string,
   amount: number,
-  currency: string
+  currency: string,
+  percentage: number
 }
 
 export interface ExpenseItem {
+  id: string;
   name: string;
   date: string;
   category: categories;
@@ -35,6 +37,7 @@ export interface IHomeProps {
     getMontlyPriceByCategory: (category: categories|string) => number,
     getMonthlyTotalPrice: () => number,
     currency: string,
-    username: string
+    username: string,
+    budget: number
   }
 }

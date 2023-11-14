@@ -34,7 +34,8 @@ export enum ModeOfPayment {
   CARD = 'Card',
   TRANSFER = 'Transfer',
   CASH = 'Cash',
-  UPI = 'UPI'
+  UPI = 'UPI',
+  ALL = 'all'
 }
 
 export const PaymentModes = [

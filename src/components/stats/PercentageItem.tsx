@@ -4,19 +4,20 @@ import './Stats.css'
 
 interface IProps {
   category: categories,
-  percentage: string
+  amount: number,
+  currency: string
 }
 export default function PercentageItem(props: IProps) {
-  const {category, percentage} = props;
+  const {category, amount, currency} = props;
 
   return (
     <div className="px-1 py-2 m-1 percentage-item">
-      <div className="d-flex justify-content-between">
-        <div className="px-1 d-flex align-items-center">
+      <div className="flex justify-between">
+        <div className="px-1 flex items-center">
           <div className="category-color mx-2" style={{backgroundColor: categoryColors[category.toLowerCase()]}}></div>
           <div>{category}</div>
         </div>
-        <div>{percentage}%</div>
+        <div>{amount} <span className="text-xs">{currency}</span></div>
       </div>
     </div>
   )

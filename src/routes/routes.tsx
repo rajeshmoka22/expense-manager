@@ -1,6 +1,6 @@
 import * as React from 'react'; 
 import { Route, Routes } from 'react-router-dom';
-import { hasUserName } from '../utils/reusables';
+import { showWelcomePage } from '../utils/reusables';
 import { paths } from "../utils/constants";
 import AddExpenseRoot from "../components/addExpense/index";
 import HomeComponent from '../components/overview/index';
@@ -20,7 +20,7 @@ export default function Routing() {
         <Route path={paths.Statistics} element={<StatsComponentRoot />} />
         <Route path={paths.History} element={<HistoryComponentRoot />} />
         <Route path='/' element={<HomeComponent />} />
-        {!hasUserName() ? <Route path={paths.Welcome} element={<WelcomeRoot />} /> : null}
+        {showWelcomePage() ? <Route path={paths.Welcome} element={<WelcomeRoot />} /> : null}
       </Routes>
       <NavRoot />
     </>
